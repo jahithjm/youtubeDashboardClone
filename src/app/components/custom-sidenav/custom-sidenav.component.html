@@ -7,9 +7,11 @@
   </div>
 </div>
 <mat-nav-list>
-  <a mat-list-item *ngFor="let item of menuItems()" [routerLink]="item.route" >
-    <mat-icon matListItemIcon >
-      {{ item.icon}}
+  <a mat-list-item *ngFor="let item of menuItems()" [routerLink]="item.route"
+    [activated]="isActiveRoute(item.route)"
+  >
+    <mat-icon matListItemIcon>
+      {{ item.icon }}
     </mat-icon>
     <span matListItemTitle *ngIf="!sideNavCollapsed()">
       {{ item.label }}

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, Input, signal } from '@angular/core';
+import { Component, computed, Input, signal, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import {MatListModule } from '@angular/material/list';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 export type MenuItem={
   icon:string;
@@ -15,7 +15,7 @@ export type MenuItem={
   templateUrl: './custom-sidenav.component.html',
   styleUrl: './custom-sidenav.component.css'
 })
-export class CustomSidenavComponent {
+export class CustomSidenavComponent implements OnInit {
 
   sideNavCollapsed =signal(false);
 
@@ -54,4 +54,24 @@ export class CustomSidenavComponent {
   ]);
 
   profilePicSize=computed(()=>this.sideNavCollapsed()? '32':'100');
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.router.events.subscribe(() => {
+      this.updateActiveRoute();
+    });
+  }
+
+  updateActiveRoute() {
+    const updatedMenuItems = this.menuItems().map(item => ({
+      ...item,
+      active: this.isActiveRoute(item.route)
+    }));
+    this.menuItems.set(updatedMenuItems);
+  }
+
+  isActiveRoute(route: string): boolean {
+    return this.router.url === route;
+  }
 }
