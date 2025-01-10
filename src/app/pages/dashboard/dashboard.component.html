@@ -1,10 +1,29 @@
-<h1>
-  Dashboard
-</h1>
-<div class="dasboard-widgets">
-  @for (w of store.widgets(); track w.id) {
-    <app-widget [data]="w" ></app-widget>
+<div class="header">
+  <h2>Dashboard</h2>
+  <button mat-raised-button [mat-menu-trigger-for]="widgetMenu" >
+    <mat-icon>add_circle</mat-icon>
+    Add widget
+  </button>
+  <mat-menu #widgetMenu="matMenu">
+    @for (widget of store.widgetsToAdd(); track widget.id){
+      <button mat-menu-item (click)="store.addWidget(widget)">
+        {{widget.label}}
+      </button>
 
-  }
+    } @empty {
+
+      <button mat-menu-item >
+        No wdiget to add
+      </button>
+    }
+
+  </mat-menu>
 
 </div>
+  <div class="dasboard-widgets">
+    @for (w of store.addedWidgets(); track w.id) {
+    <app-widget [data]="w"></app-widget>
+
+    }
+  </div>
+
