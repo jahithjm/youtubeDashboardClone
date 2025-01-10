@@ -10,7 +10,9 @@ export class DashboardService {
     {
       id:1,
       label:'Subscribers',
-      content: SupscribersComponent
+      content: SupscribersComponent,
+      rows:2,
+      columns:2
     },
     {
       id:2,

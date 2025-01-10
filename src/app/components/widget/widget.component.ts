@@ -7,13 +7,21 @@ import { WidgetOptionsComponent } from './widget-options/widget-options.componen
 
 @Component({
   selector: 'app-widget',
-  imports: [NgComponentOutlet,MatButtonModule,MatIcon,WidgetOptionsComponent],
+  imports: [
+    NgComponentOutlet,
+    MatButtonModule,
+    MatIcon,
+    WidgetOptionsComponent,
+  ],
   templateUrl: './widget.component.html',
-  styleUrl: './widget.component.css'
+  styleUrl: './widget.component.css',
+  host: {
+    '[styles.grid-area]':
+      '"span" +(data().rows ?? 1)+ "/span" + (data().columns ?? 1)',
+  },
 })
 export class WidgetComponent {
+  data = input.required<widget>();
 
-  data=input.required<widget>();
-
-  showOptions=signal(false);
+  showOptions = signal(false);
 }

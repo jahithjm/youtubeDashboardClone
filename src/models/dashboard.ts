@@ -4,5 +4,7 @@ export interface widget{
   id:number;
   label:string;
   content:Type<unknown>;
-  
+  rows?:number
+  columns?:number;
+
 }
