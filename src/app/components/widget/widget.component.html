@@ -10,6 +10,6 @@
   <ng-container [ngComponentOutlet]="data().content" ></ng-container>
 
   @if (showOptions()) {
-    
+    <app-widget-options [(showOptions)]="showOptions"></app-widget-options>
   }
 </div>
