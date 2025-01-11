@@ -15,7 +15,7 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  /* --mat-standard-button-toggle-height:18px */
+  --mat-standard-button-toggle-height:18px
   > div {
     display: flex;
     gap: 8px;

@@ -34,5 +34,15 @@ export class DashboardService {
     addWidget(widget: widget){
       this.addedWidgets.set([...this.addedWidgets(),{...widget}]);
     }
+
+    updateWidget(id:number,widget:Partial<widget>){
+      const index= this.addedWidgets().findIndex(w=>w.id === id);
+      if(index !==-1){
+        const newWidget=[...this.addedWidgets()];
+        newWidget[index]={...newWidget[index],...widget};
+        this.addedWidgets.set(newWidget);
+      }
+
+    }
   constructor() { }
 }
