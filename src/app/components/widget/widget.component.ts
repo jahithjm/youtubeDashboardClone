@@ -16,8 +16,7 @@ import { WidgetOptionsComponent } from './widget-options/widget-options.componen
   templateUrl: './widget.component.html',
   styleUrl: './widget.component.css',
   host: {
-    '[styles.grid-area]':
-      '"span" +(data().rows ?? 1)+ "/span" + (data().columns ?? 1)',
+    '[style.grid-area]': '"span " + (data().rows ?? 1) + " / span " + (data().columns ?? 1)',
   },
 })
 export class WidgetComponent {
