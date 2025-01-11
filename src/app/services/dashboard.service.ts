@@ -44,5 +44,27 @@ export class DashboardService {
       }
 
     }
+
+    moveWidgetToRight(id: number){
+      const index= this.addedWidgets().findIndex(w=>w.id === id);
+      if(index === this.addedWidgets().length-1){
+        return;
+      }
+
+      const newWidget = [...this.addedWidgets()];
+      [newWidget[index],newWidget[index+1]]=[{...newWidget[index+1]},{...newWidget[index]}];
+      this.addedWidgets.set(newWidget);
+    }
+    moveWidgetToLeft(id: number){
+      const index= this.addedWidgets().findIndex(w=>w.id === id);
+      if(index === 0){
+        return;
+      }
+
+      const newWidget = [...this.addedWidgets()];
+      [newWidget[index],newWidget[index-1]]=[{...newWidget[index-1]},{...newWidget[index]}];
+      this.addedWidgets.set(newWidget);
+
+    }
   constructor() { }
 }
