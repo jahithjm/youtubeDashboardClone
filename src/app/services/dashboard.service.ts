@@ -2,6 +2,8 @@ import { computed, Injectable, signal } from '@angular/core';
 import { widget } from '../../models/dashboard';
 import { SupscribersComponent } from '../pages/dashboard/widgets/supscribers/supscribers.component';
 import { ViewesComponent } from '../pages/dashboard/widgets/viewes/viewes.component';
+import { RevenueComponent } from '../dashboard/widgets/revenue/revenue.component';
+import { TimelineComponent } from '../dashboard/widgets/timeline/timeline.component';
 
 @Injectable()
 export class DashboardService {
@@ -11,13 +13,39 @@ export class DashboardService {
       id:1,
       label:'Subscribers',
       content: SupscribersComponent,
-      rows:2,
-      columns:2
+      rows:1,
+      columns:1,
+      backgroundColor:'#003f5c',
+      color:'yellow'
     },
     {
       id:2,
       label:'Views',
-      content: ViewesComponent
+      content: ViewesComponent,
+      rows:1,
+      columns:1,
+      backgroundColor:'#003f5c',
+      color:'yellow'
+    }
+    ,{
+      id:3,
+      label:'Revenue',
+      content: RevenueComponent,
+      rows:1,
+      columns:1,
+      backgroundColor:'#003f5c',
+      color:'yellow'
+
+    }
+    ,{
+      id:4,
+      label:'Timeline',
+      content: TimelineComponent,
+      rows:1,
+      columns:1,
+      backgroundColor:'#003f5c',
+      color:'yellow'
+
     }
 
   ])
