@@ -16,7 +16,7 @@ export class DashboardService {
       rows:1,
       columns:1,
       backgroundColor:'#003f5c',
-      color:'yellow'
+      color:'white'
     },
     {
       id:2,
@@ -25,7 +25,7 @@ export class DashboardService {
       rows:1,
       columns:1,
       backgroundColor:'#003f5c',
-      color:'yellow'
+      color:'white'
     }
     ,{
       id:3,
@@ -34,7 +34,7 @@ export class DashboardService {
       rows:1,
       columns:1,
       backgroundColor:'#003f5c',
-      color:'yellow'
+      color:'white'
 
     }
     ,{
@@ -44,7 +44,7 @@ export class DashboardService {
       rows:1,
       columns:1,
       backgroundColor:'#003f5c',
-      color:'yellow'
+      color:'white'
 
     }
 
