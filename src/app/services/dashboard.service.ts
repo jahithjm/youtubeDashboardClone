@@ -1,9 +1,10 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, effect, Injectable, signal } from '@angular/core';
 import { widget } from '../../models/dashboard';
 import { SupscribersComponent } from '../pages/dashboard/widgets/supscribers/supscribers.component';
 import { ViewesComponent } from '../pages/dashboard/widgets/viewes/viewes.component';
 import { RevenueComponent } from '../dashboard/widgets/revenue/revenue.component';
 import { TimelineComponent } from '../dashboard/widgets/timeline/timeline.component';
+import { json } from 'node:stream/consumers';
 
 @Injectable()
 export class DashboardService {
@@ -48,7 +49,7 @@ export class DashboardService {
 
     }
 
-  ])
+  ]);
 
     addedWidgets=signal<widget[]>([
 
@@ -59,6 +60,23 @@ export class DashboardService {
       return this.widgets().filter(w=>!addIds.includes(w.id));
     })
 
+    fetchWidget(){
+      const widgetAsString= localStorage.getItem('DasboardWidget')
+
+      if (widgetAsString){
+
+        const widgets = JSON.parse(widgetAsString) as widget[];
+        widgets.forEach(widget=>{
+          const content= this.widgets().find(w=>w.id==widget.id)?.content;
+
+          if (content){
+            widget.content=content;
+
+          }
+        })
+        this.addedWidgets.set(widgets);
+      }
+    }
     addWidget(widget: widget){
       this.addedWidgets.set([...this.addedWidgets(),{...widget}]);
     }
@@ -99,5 +117,17 @@ export class DashboardService {
       this.addedWidgets.set(this.addedWidgets().filter(w=>w.id!==id));
 
     }
-  constructor() { }
+  constructor() {
+    this.fetchWidget();
+    
+  }
+
+  saveWidget= effect(()=>{
+    const widegtsWithoutContent:Partial<widget>[]=this.addedWidgets().map(w=>({...w}));
+    widegtsWithoutContent.forEach(w=>{
+      delete w.content;
+    });
+
+    localStorage.setItem('DasboardWidget',JSON.stringify(widegtsWithoutContent));
+  })
 }
