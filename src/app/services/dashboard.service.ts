@@ -5,6 +5,7 @@ import { ViewesComponent } from '../pages/dashboard/widgets/viewes/viewes.compon
 import { RevenueComponent } from '../dashboard/widgets/revenue/revenue.component';
 import { TimelineComponent } from '../dashboard/widgets/timeline/timeline.component';
 import { json } from 'node:stream/consumers';
+import { GraphComponent } from '../pages/graph/graph.component';
 
 @Injectable()
 export class DashboardService {
@@ -46,6 +47,15 @@ export class DashboardService {
       columns:1,
       backgroundColor:'#003f5c',
       color:'white'
+
+    },
+    {
+      id:5,
+      label:'Graphs',
+      content: GraphComponent,
+      rows:2,
+      columns:2,
+      
 
     }
 
@@ -119,7 +129,7 @@ export class DashboardService {
     }
   constructor() {
     this.fetchWidget();
-    
+
   }
 
   saveWidget= effect(()=>{

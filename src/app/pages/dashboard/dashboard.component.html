@@ -20,9 +20,9 @@
   </mat-menu>
 
 </div>
-  <div #dashboard class="dasboard-widgets">
+  <div #dashboard class="dasboard-widgets" cdkDropListGroup >
     @for (w of store.addedWidgets(); track w.id) {
-    <app-widget [data]="w"></app-widget>
+    <app-widget cdkDropList [data]="w" (cdkDropListDropped)="drop($event)" ></app-widget>
 
     }
   </div>
